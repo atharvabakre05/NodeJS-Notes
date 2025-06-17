@@ -2,25 +2,30 @@ require('dotenv').config();
 
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
+const path = require('path');
 
 const app = express();
-const port = 5000 || process.env.PORT;
+const port = process.env.PORT || 5000;
 
-app.use(express.urlencoded({extended: true}));
+// Middleware
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-//Static Files link
-app.use(express.static('public)'));
+// Static Files
+app.use(express.static(path.join(__dirname, 'public')));  // fixed path
 
-//Templating Engine
+// EJS
 app.use(expressLayouts);
-app.set('layout', './layouts/main');
+app.set('layout', './layouts/main'); // optional: remove if you’re not using layouts
+app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-app.get('/', function(req, res){
-    res.render('index');
+// Routes
+app.get('/', function (req, res) {
+    res.render('index'); // no .ejs extension
 });
 
+// Start server
 app.listen(port, () => {
     console.log(`App listening on port ${port}`);
 });
