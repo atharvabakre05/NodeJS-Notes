@@ -14,16 +14,14 @@ app.use(express.json());
 // Static Files
 app.use(express.static(path.join(__dirname, 'public')));  // fixed path
 
-// EJS
+// Templating engine
 app.use(expressLayouts);
 app.set('layout', './layouts/main'); // optional: remove if you’re not using layouts
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// Routes
-app.get('/', function (req, res) {
-    res.render('index'); // no .ejs extension
-});
+//Routes
+app.use('/', require('./servers/routes/index'));
 
 // Start server
 app.listen(port, () => {
