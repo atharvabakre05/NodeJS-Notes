@@ -17,4 +17,4 @@ exports.about = async (req, res) => {
         title: "About - NodeJs Notes",
         description: "Free NodeJs Notes app"
     });
-};
+}; 
