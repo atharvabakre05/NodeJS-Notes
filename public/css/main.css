@@ -70,7 +70,31 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 /* Home */
-.home{
+@media (min-width: 1200px) {
+    .home{
+        background:
+            /* url('../img/1.png') left bottom no-repeat, */
+            url('../img/2.png') right bottom no-repeat,
+            /* url('../img/Lady...jpg') left top repeat, */
+            var(--background-color);
 
 
+        ;
+}
+
+}
+
+
+.home-title::before {
+    content: url('../img/sparkle.png'); 
+    position: absolute;
+    left: -50px;
+    top: -30px;
+}
+
+.home-title::after {
+    content: url('../img/sparkle.png'); 
+    position: absolute;
+    right: -50px;
+    bottom: -30px;
 }
