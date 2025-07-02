@@ -12,18 +12,29 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Static Files
-app.use(express.static(path.join(__dirname, 'public')));  // fixed path
+app.use(express.static(path.join(__dirname, 'public')));
 
-// Templating engine
+// Templating Engine
 app.use(expressLayouts);
-app.set('layout', './layouts/main'); // optional: remove if you’re not using layouts
+app.set('layout', './layouts/main'); // or 'front-page'
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-//Routes
-app.use('/', require('./servers/routes/index'));
+// Routes
+const mainRoutes = require('./servers/routes/index');
+app.use('/', mainRoutes);
+app.use('/', require('./servers/routes/dashboard'));
 
-// Start server
+// 404 Handler
+app.use((req, res) => {
+  res.status(404).render('404', {
+    title: '404 - Page Not Found',
+    description: 'This page does not exist.',
+    layout: 'layouts/front-page'
+  });
+});
+
+// Start Server
 app.listen(port, () => {
-    console.log(`App listening on port ${port}`);
+  console.log(`App listening on port ${port}`);
 });
