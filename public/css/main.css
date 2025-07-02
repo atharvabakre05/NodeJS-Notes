@@ -9,7 +9,6 @@ body{
     color: var(--bs-primary-rgb);
     font-weight: 300;
     font-size: 1.2rem;
-    background-image: url;
 }
 
 h1,h2,h3,h4,h5,h6 {
@@ -30,6 +29,8 @@ h1,h2,h3,h4,h5,h6 {
 }
 
 .btn-primary {
+      border-radius: 25px;         /* Makes corners round */
+      padding: 12px 24px;
     --bs-btn-color: #fff;
     --bs-btn-bg: var(--bs-primary-rgb);
     --bs-btn-border-color: var(--bs-primary-rgb);
@@ -69,35 +70,55 @@ h1,h2,h3,h4,h5,h6 {
     --bs-pagination-active-border-color: var(--bs-primary-rgb); 
 }
 @media (min-width: 1200px) {
-    .home {
+    body.front-page {
         background:
             url('../img/1.png') no-repeat,
             url('../img/2.png') no-repeat,
             var(--background-color);
 
         background-position:
-            calc(0%  - 100px) calc(100% + 85px),     /* Slight right shift for 1.png */
-            calc(100% + 201px) calc(100% + 100px); /* More right for 2.png */
+            calc(0% - 100px) calc(100% + 118px),
+            calc(100% + 201px) calc(100% + 128px);
 
         background-size:
-            auto 750px,   /* Equal tall size */
-            auto 750px;
+            auto 800px,
+            auto 800px;
     }
 }
 
-
-
-
 .home-title::before {
-    content: url('../img/sparkle.png'); 
+    content: url('../img/Sparkle\ 2.png'); 
     position: absolute;
     left: -50px;
     top: -30px;
 }
 
 .home-title::after {
-    content: url('../img/sparkle.png'); 
+    content: url('../img/Sparkle\ 2.png'); 
     position: absolute;
     right: -50px;
     bottom: -30px;
+}
+
+.nav-link {
+  color: rgba(33, 37, 41, 0.95) !important; /* Bootstrap’s default text-dark with slight opacity */
+  padding-left: 1000;
+}
+
+
+
+
+.nav-link:hover {
+  filter: brightness(100%);
+}   
+
+.col-md-4{
+    padding-right: 115px;
+}
+
+
+
+
+.col-md-4 {
+  margin-top: 30px;
 }
