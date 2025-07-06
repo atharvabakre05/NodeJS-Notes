@@ -3,56 +3,51 @@ require('dotenv').config();
 const express = require('express');
 const expressLayouts = require('express-ejs-layouts');
 const path = require('path');
-const connectDB = require('./servers/config/db');
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
-const passport = require('passport'); // ✅ Required for passport.initialize()
+const passport = require('passport');
+const connectDB = require('./servers/config/db');
 
 const app = express();
 const port = process.env.PORT || 5000;
 
-app.use(session({
-  secret: 'keyboard cat',
-  resave: false,
-  saveUninitialized: true,
-  store: MongoStore.create({
-    mongoUr1: process.env.MONGODB_URI
-  })
-}));
-
-
-app.use(passport.initialize());
-app.use(passport.session());
-// Connect to MongoDB
+// MongoDB connection
 connectDB();
 
-// Middleware to parse request data
+// Body parsing
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-// Initialize Passport
-app.use(passport.initialize());
-// app.use(passport.session()); // Uncomment if using sessions
+// Session management
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  store: MongoStore.create({
+    mongoUrl: process.env.MONGODB_URI
+  }),
+  // cookie: { maxAge: new Date (Date.now() + (36000000)) }
+}));
 
-// Static Files
+// Passport setup
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Static files
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Templating Engine
+// View engine
 app.use(expressLayouts);
-app.set('layout', './layouts/main'); // or 'front-page'
+app.set('layout', './layouts/main');
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 // Routes
-const mainRoutes = require('./servers/routes/index');
-const authRoutes = require('./servers/routes/auth');
-const dashboardRoutes = require('./servers/routes/dashboard');
+app.use('/', require('./servers/routes/auth'));
+app.use('/', require('./servers/routes/index'));
+app.use('/', require('./servers/routes/dashboard'));
 
-app.use('/', authRoutes);
-app.use('/', mainRoutes);
-app.use('/', dashboardRoutes);
-
-// 404 Handler
+// 404 Page
 app.use((req, res) => {
   res.status(404).render('404', {
     title: '404 - Page Not Found',
@@ -61,7 +56,7 @@ app.use((req, res) => {
   });
 });
 
-// Start Server
+// Start server
 app.listen(port, () => {
   console.log(`✅ App listening on port ${port}`);
 });

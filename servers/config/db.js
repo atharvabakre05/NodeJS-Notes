@@ -1,4 +1,4 @@
-const mongoose = require('mongoose'); // ✅ CORRECT import
+const mongoose = require('mongoose');
 
 mongoose.set('strictQuery', false);
 
@@ -8,7 +8,7 @@ const connectDB = async () => {
     console.log(`✅ Database Connected: ${conn.connection.host}`);
   } catch (error) {
     console.error('❌ MongoDB connection error:', error.message);
-    process.exit(1); // Exit process with failure
+    process.exit(1);
   }
 };
 
