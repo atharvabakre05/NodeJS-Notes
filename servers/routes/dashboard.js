@@ -3,9 +3,7 @@ const router = express.Router();
 const { isLoggedIn } = require('../middleware/checkAuth');
 const dashboardController = require('../Controllers/dashboardController');
 
-
-//Dashboard Routes
+// Dashboard Routes
 router.get('/dashboard', isLoggedIn, dashboardController.dashboard);
-
 
 module.exports = router;
