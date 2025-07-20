@@ -73,13 +73,18 @@ h1,h2,h3,h4,h5,h6 {
 @media (min-width: 1200px) {
   .home {
     background: 
-      url('../img/human-1.svg') left bottom no-repeat,
-      url('../img/human-2.svg') right bottom no-repeat,
       url('../img/noise-bg.svg') left top repeat,
       var(--background-color);
-    ;
+    background-repeat: no-repeat;
+    background-position: left bottom, right bottom, left top;
+    background-size: auto 450px, auto 450px, auto; /* ✅ Increase height here */
+    background-image: 
+      url('../img/human-1.svg'),
+      url('../img/human-2.svg'),
+      url('../img/noise-bg.svg');
   }
 }
+
 
 .home-title::before {
   content: url('../img/stars.svg');
@@ -109,3 +114,5 @@ h1,h2,h3,h4,h5,h6 {
       var(--background-color);
   }
 }
+
+
