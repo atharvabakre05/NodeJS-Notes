@@ -12,83 +12,20 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&family=Unbounded:wght@400;700&display=swap" rel="stylesheet">
-
-  <style>
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: #ffc800;
-      font-family: 'Poppins', sans-serif;
-    }
-
-    .character-wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      width: 100%;
-    }
-
-    .bg-left, .bg-right {
-      width: 180px;
-      height: 200;
-    }
-
-    footer {
-      width: 100%;
-      padding: 25px 40px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 14px;
-      font-weight: 400;
-      background-color: #ffc800;
-      font-family: 'Unbounded', cursive;
-    }
-
-    footer .center {
-      text-align: center;
-      flex: 1;
-    }
-
-    footer .left {
-      flex: 1;
-      text-align: left;
-    }
-
-    footer .right {
-      flex: 1;
-      text-align: right;
-    }
-
-    footer a {
-      color: #000;
-      text-decoration: none;
-      margin-left: 15px;
-    }
-
-    footer a:hover {
-      text-decoration: underline;
-    }
-  </style>
 </head>
 
 <body class="home front-page">
-
+  
   <!-- Header -->
   <%- include('../partials/header.ejs') %>
 
-  <!-- Main content -->
-  <main>
+  <!-- Page content -->
+  <main class="page-content">
     <%- body %>
+  </main>
 
-    <!-- Character images at bottom of main content -->
-    <!-- <div class="character-wrapper">
-      <img src="/img/human-1.svg" class="bg-left" alt="left character">
-      <img src="/img/human-2.svg" class="bg-right" alt="right character">
-    </div>
-  </main> -->
 
-  <!-- Footer AFTER characters -->
+  <!-- Footer -->
   <footer>
     <div class="left">© 2025 Company, Inc</div>
     <div class="center">Notes.</div>

@@ -70,20 +70,19 @@ h1,h2,h3,h4,h5,h6 {
 
 
 /* Home */
-@media (min-width: 1200px) {
-  .home {
-    background: 
-      url('../img/noise-bg.svg') left top repeat,
-      var(--background-color);
-    background-repeat: no-repeat;
-    background-position: left bottom, right bottom, left top;
-    background-size: auto 450px, auto 450px, auto; /* ✅ Increase height here */
+/* @media (min-width: 1200px) {
+  body.home {
+    background-color: var(--background-color);
     background-image: 
       url('../img/human-1.svg'),
       url('../img/human-2.svg'),
       url('../img/noise-bg.svg');
+    background-repeat: no-repeat, no-repeat, repeat;
+    background-position: left bottom, right bottom, left top;
+    background-size: auto 400px, auto 400px, auto;
   }
-}
+} */
+
 
 
 .home-title::before {
@@ -115,4 +114,97 @@ h1,h2,h3,h4,h5,h6 {
   }
 }
 
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  scroll-behavior: smooth;
+  background-color: #ffc800;
+}
 
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Ensure content fills space and scrolls if needed */
+main.page-content {
+  flex: 1 0 auto;
+  padding-bottom: -20px; /* reduced to move footer up */
+  min-height: 100vh;
+}
+
+/* Footer stays at bottom */
+footer {
+  width: 100%;
+  padding: 15px 40px; /* slightly less vertical padding */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.2rem; /* Increased font size */
+  font-weight: 500;
+  background-color: #ffc800;
+  font-family: 'Unbounded', cursive;
+  margin-top: -40px;  /* Move footer up slightly */
+  z-index: 3;
+}
+
+footer .left,
+footer .center,
+footer .right {
+  flex: 1;
+}
+
+footer .center {
+  text-align: center;
+}
+
+footer .left {
+  text-align: left;
+}
+
+footer .right {
+  text-align: right;
+}
+
+footer a {
+  color: #000;
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 1.15rem; /* Slightly increase link size */
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+  
+
+/* Character images fixed at bottom */
+.character-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bg-left, .bg-right {
+  width: 200px;  /* adjust as needed */
+  height: auto;
+}
+
+/* Footer links */
+footer a {
+  color: #000;
+  text-decoration: none;
+  margin-left: 15px;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
