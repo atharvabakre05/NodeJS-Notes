@@ -9,6 +9,10 @@ const MongoStore = require('connect-mongo');
 const passport = require('passport');
 const connectDB = require('./servers/config/db');
 
+// Passport config
+require('./servers/config/passport')(passport);
+
+
 const app = express();
 const port = process.env.PORT || 5000;
 
